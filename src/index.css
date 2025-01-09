@@ -1,3 +1,54 @@
+@import url(/src/css/header.css);
+@import url(/src/css/menu-item.css);
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+/* typography */
+
 body {
-    margin: 0;
-} 
+	font-family: Smythe, serif;
+	font-size: 1rem;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+}
+
+/* Layout */
+
+body {
+	padding: 0;
+	margin: 0 auto;
+	max-width: 600px;
+}
+
+.grid {
+	height: 100%;
+	display: grid;
+	grid-template-columns:
+		[grid-start] 50px
+		[menu-start icon-start] 130px
+		[menu-description-start icon-end] 150px
+		[menu-description-end] 1fr
+		[button-start] 50px
+		[menu-end button-end] 50px
+		[grid-end];
+}
+
+.grid-rows {
+	display: grid;
+	grid-template-rows: auto auto auto;
+}
+
+/* passes the columns to the menu-item */
+.subgrid-columns {
+	display: grid;
+	grid-template-columns: subgrid;
+}
+
+.grid-vertical-center {
+	align-self: center;
+}

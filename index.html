@@ -1,11 +1,33 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="/src/index.css">
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="./src/index.css">
+    <!-- script -->
     <script src="src/main.ts" type="module"></script>
-    <title>Food Order</title>
-    
+    <title>Jimmy's Diner</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Smythe&display=swap"
+      rel="stylesheet"
+    >
+    <!-- meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    
+    <header class="header" role="heading">
+      <div class="grid">
+        <h1 class="header-title grid-vertical-center">Jimmy's Diner</h1>
+        <p class="header-body grid-vertical-center">
+          The best burgers and pizzas in town.
+        </p>
+      </div>
+    </header>
+    <main class="main" role="main">
+      <section class="grid grid-rows" id="app"></section>
+    </main>
   </body>
 </html>
