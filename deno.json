@@ -10,6 +10,7 @@
   },
   "imports": {
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.0",
+    "debouncing": "npm:debouncing@^22.7.25",
     "lightningcss": "npm:lightningcss@^1.29.0",
     "vite": "npm:vite@^6.0.1",
     "vite-plugin-lightningcss": "npm:vite-plugin-lightningcss@^0.0.5"

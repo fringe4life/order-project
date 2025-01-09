@@ -2,6 +2,7 @@
   "version": "4",
   "specifiers": {
     "npm:@deno/vite-plugin@1": "1.0.2_vite@6.0.6",
+    "npm:debouncing@^22.7.25": "22.7.25",
     "npm:lightningcss@^1.29.0": "1.29.0",
     "npm:vite-plugin-lightningcss@^0.0.5": "0.0.5",
     "npm:vite@*": "6.0.6",
@@ -160,6 +161,9 @@
     },
     "caniuse-lite@1.0.30001692": {
       "integrity": "sha512-A95VKan0kdtrsnMubMKxEKUKImOPSuCpYgxSQBo036P5YYgVIcOYJEgt/txJWqObiRQeISNCfef9nvlQ0vbV7A=="
+    },
+    "debouncing@22.7.25": {
+      "integrity": "sha512-8X8SS+PEkaBBi1tUVZVT4xFImHI9iQ7uSazoHMjoSJ603hY4ZrffwDg0MExbGnYH+7J3QY2ElnCCJEgaIBZ8bA=="
     },
     "detect-libc@1.0.3": {
       "integrity": "sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg=="
@@ -323,6 +327,7 @@
   "workspace": {
     "dependencies": [
       "npm:@deno/vite-plugin@1",
+      "npm:debouncing@^22.7.25",
       "npm:lightningcss@^1.29.0",
       "npm:vite-plugin-lightningcss@^0.0.5",
       "npm:vite@^6.0.1"

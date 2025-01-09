@@ -1,54 +1,24 @@
-@import url(/src/css/header.css);
-@import url(/src/css/menu-item.css);
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-/* typography */
+@import url(/src/css/reset.css) layer(reset);
+@import url(/src/css/components.css) layer(components);
+@import url(/src/css/grid.css) layer(layout);
 
-body {
-	font-family: Smythe, serif;
-	font-size: 1rem;
-	font-weight: 400;
-	-webkit-font-smoothing: antialiased;
+@layer reset, base, layout, components;
 
-	text-underline-position: from-font;
-	text-decoration-skip-ink: none;
-}
-
-/* Layout */
-
-body {
-	padding: 0;
-	margin: 0 auto;
-	max-width: 600px;
-}
-
-.grid {
-	height: 100%;
-	display: grid;
-	grid-template-columns:
-		[grid-start] 50px
-		[menu-start icon-start] 130px
-		[menu-description-start icon-end] 150px
-		[menu-description-end] 1fr
-		[button-start] 50px
-		[menu-end button-end] 50px
-		[grid-end];
-}
-
-.grid-rows {
-	display: grid;
-	grid-template-rows: auto auto auto;
-}
-
-/* passes the columns to the menu-item */
-.subgrid-columns {
-	display: grid;
-	grid-template-columns: subgrid;
-}
-
-.grid-vertical-center {
-	align-self: center;
+/* used layouts for first time!! :) */
+@layer base {
+	/* typography */
+	body {
+		font-family: Smythe, serif;
+		font-size: 1rem;
+		font-weight: 400;
+		/* not sure if this is the best place for this... */
+		text-underline-position: from-font;
+		text-decoration-skip-ink: none;
+	}
+	/* Layout */
+	body {
+		padding: 0;
+		margin: 0 auto;
+		max-width: 600px;
+	}
 }

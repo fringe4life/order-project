@@ -45,12 +45,12 @@
 	grid-column: icon;
 	grid-row: 1 / -1;
 	margin: 0;
+	align-self: self-start;
 }
 
-.menu-item-title,
-.menu-item-ingredients,
-.menu-item-price {
+.menu-item-info {
 	grid-column: menu-description;
+	padding-top: .5em;
 }
 
 .menu-add-btn {
@@ -67,9 +67,17 @@
 	background-color: white;
 	border: 1.5px solid #dedede;
 
-	&:focus-within,
+	/* transition to/from hover,active */
+	transition: border-color ease-in-out;
+
+	&:active,
+	&:hover {
+		cursor: pointer;
+	}
 	&:hover {
 		border-color: black;
-		cursor: pointer;
+	}
+	&:active {
+		border-color: green;
 	}
 }

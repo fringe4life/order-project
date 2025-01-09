@@ -2,30 +2,38 @@ import menuArray ,{ type MenuItem } from "./data.ts";
 
 document.addEventListener('click', handleClick)
 
+// should debounce or throttle it for practise!!
+/**
+ * @abstract listens for click events on the buttons
+ * @param e the Event that was triggered by click event handler
+ */
 function handleClick(e:Event){
-    // const menuItem = menuArray.find(item => item.id === parseInt((e.target as HTMLButtonElement).dataset.id));
-    // if(menuItem){
-    //     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]') as MenuItem[];
-    //     const existingItem = cartItems.find(item => item.id === menuItem.id);
-    //     if(existingItem){
-    //         existingItem.quantity++;
-    //     } else {
-    //         menuItem.quantity = 1;
-    //         cartItems.push(menuItem);
-    //     }
-    //     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    //     renderCartItems();
-    // }
+		const target = e.target as HTMLButtonElement;
+        // only the + buttons have data-id
+		if (target.dataset.id) {
+			const itemId = Number.parseInt(target.dataset.id);
+            // typesafely access localStorage
+			const currentOrder = localStorage.getItem("currentOrder") 
+            const lsObj = currentOrder && JSON.parse(currentOrder) || []
+            console.log(lsObj)
+            
+            // if item is not in currentOrder, add it with quantity 1
+            // else increment quantity
+            if (!lsObj[itemId]) {
+                lsObj[itemId] = { quantity: 1 };
+			} else {
+                lsObj[itemId].quantity++;
+            }
+            localStorage.setItem("currentOrder", JSON.stringify(lsObj));
+            console.log(lsObj)
+		}
 }
-
-const calculateTotalPrice = (items: MenuItem[]): number => {
-    return items.reduce((total, item) => total + item.price, 0);
-}
-
-const filterItemsByIngredient = (items: MenuItem[], ingredient: string): MenuItem[] => {
-    return items.filter(item => item.ingredients.includes(ingredient));
-}
-
+/**
+ * 
+ * @param takes a menu item as an object to make the html that will
+ * display it 
+ * @returns the html that will be rendered to the page
+ */
 const renderMenuItem =({id,name,ingredients,price,emoji}:MenuItem)=>{
     return `
     <div class='subgrid-columns menu-item'>
@@ -38,13 +46,16 @@ const renderMenuItem =({id,name,ingredients,price,emoji}:MenuItem)=>{
         <button class='menu-add-btn' data-id='${id}'>+</button>
     </div>`
 }
-
+/**
+ * 
+ * @param items the menuArray from data.ts
+ * @abstract sets the menu-items in the html
+ */
 const renderMenuItems = (items: MenuItem[]) => {
     const app = document.getElementById('app')
     if(app){
         app.innerHTML = items.map(renderMenuItem).join('');
     }
-
 }
 
 renderMenuItems(menuArray)
