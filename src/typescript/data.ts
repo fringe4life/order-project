@@ -23,4 +23,6 @@ const menuArray = [
 ]
 export default menuArray
 
+// first time doing this, would usually recreate
+// an item from above just with :string or :number
 export type MenuItem = typeof menuArray[0]

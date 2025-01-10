@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+    <!-- undynamic code no need to use js -->
     <header class="header" role="heading">
       <div class="grid">
         <h1 class="header-title grid-vertical-center">Jimmy's Diner</h1>
@@ -27,8 +28,16 @@
       </div>
     </header>
     <main class="main" role="main">
+      <!-- where menu-items will be placed -->
       <section class="grid" id="app"></section>
-      <section class="grid" id="order"></section>
+      <!-- where the order summary will go -->
+      <section class="grid" id="order-summary" class="order-summary"></section>
     </main>
+    <template id="order-summary-template">
+        <h3 class='order-summary-title my-large'>Your Order</h3>
+        <ul id='order-summary-list' class='order-summary-list subgrid-columns border-bottom-large my-medium-bottom'></ul>
+        <p class='order-summary-subtitle'>Total Price:</p> <p id='order-summary-price' class='order-summary-price'>$${0}</p></span>
+        <button id='complete-order' class='btn order-summary-complete-btn'>Complete Order</button>
+    </template>
   </body>
 </html>

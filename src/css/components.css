@@ -1,3 +1,5 @@
-@import url(/src/css/header.css);
-@import url(/src/css/menu-item.css);
-@import url(/src/css/order.css);
+@import url(/src/css/components/header.css);
+@import url(/src/css/components/menu-item.css);
+@import url(/src/css/components/order.css);
+@import url(/src/css/components/btn.css);
+/* this file exists to enable all components to have the same layer */

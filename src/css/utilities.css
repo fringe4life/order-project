@@ -1,0 +1,20 @@
+.my-large {
+	padding: 50px 0;
+}
+
+.my-medium-bottom {
+	padding: 0 0 25px 0;
+	margin-bottom: 14px;
+}
+
+.border-bottom-small {
+	border-bottom: 1px solid #d2d2d2;
+}
+
+.border-bottom-large {
+	border-bottom: 2px solid #393333;
+}
+
+.hidden {
+	display: none;
+}

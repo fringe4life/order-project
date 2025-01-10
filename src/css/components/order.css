@@ -1,0 +1,67 @@
+/* typography */
+
+.order-summary-title {
+	font-size: 1.75rem;
+	line-height: 1rem;
+	text-align: center;
+}
+
+.order-summary-item-name {
+	font-size: 1.75rem;
+}
+
+.order-summary-price {
+	font-size: 1.25rem;
+	line-height: 1.5rem;
+}
+
+.order-summary-remove-btn {
+	font-family: Verdana, sans-serif;
+	font-size: 0.75rem;
+	line-height: 1.5rem;
+}
+
+/* layout */
+
+.order-summary-subtitle {
+	grid-column: menu-start;
+	align-self: self-start;
+}
+
+.order-summary-price {
+	/* this is really cool */
+	grid-column: button-start;
+	justify-self: end;
+}
+
+.order-summary-item-name,
+.order-summary-remove-btn {
+	/* display: inline-block; */
+	grid-column: menu-start;
+	grid-row: 1;
+	border: none;
+	background-color: white;
+}
+
+.order-summary-item-name {
+	justify-self: start;
+}
+
+.order-summary-remove-btn {
+	justify-self: end;
+	&:active,
+	&:hover {
+		cursor: pointer;
+		color: red;
+	}
+}
+
+.order-summary-complete-btn,
+.order-summary-list,
+.order-summary-title,
+.order-summary-item {
+	grid-column: menu;
+}
+
+.order-summary-item {
+}

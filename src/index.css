@@ -1,10 +1,14 @@
 @import url(/src/css/reset.css) layer(reset);
 @import url(/src/css/components.css) layer(components);
 @import url(/src/css/grid.css) layer(layout);
+@import url(/src/css/utilities.css) layer(utilities);
 
-@layer reset, base, layout, components;
+@layer reset, base, layout, components, utilities;
 
-/* used layouts for first time!! :) */
+/* 
+*	used layers for first time!! :) much easier then anitcipated
+*   though apparently can get tricky particularly with the !important keyword
+ */
 @layer base {
 	/* typography */
 	body {
