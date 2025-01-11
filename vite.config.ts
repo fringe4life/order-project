@@ -19,4 +19,7 @@ export default defineConfig({
   build: {
     cssMinify: 'lightningcss'
   },
+  esbuild: {
+    drop: ['console', 'debugger']
+  }
 })

@@ -10,6 +10,16 @@
 		[grid-end];
 	/* otherwise does not takeup full height of parent */
 	height: 100%;
+	@media (width < 600px) {
+		grid-template-columns:
+			[grid-start] 3%
+			[menu-start icon-start] 50px
+			[menu-description-start icon-end] minmax(min(100px, 100%), 150px)
+			[menu-description-end] 1fr
+			[button-start] 50px
+			[menu-end button-end] 3%
+			[grid-end];
+	}
 }
 
 /* passes the columns to child elements */
