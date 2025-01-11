@@ -16,7 +16,7 @@
 			[menu-start icon-start] 50px
 			[menu-description-start icon-end] minmax(min(100px, 100%), 150px)
 			[menu-description-end] 1fr
-			[button-start] 50px
+			[button-start] 30px
 			[menu-end button-end] 3%
 			[grid-end];
 	}
