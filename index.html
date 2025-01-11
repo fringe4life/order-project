@@ -32,12 +32,83 @@
       <section class="grid" id="app"></section>
       <!-- where the order summary will go -->
       <section class="grid" id="order-summary" class="order-summary"></section>
+      <section class="grid order-confirmation" id="order-confirmation">
+        <div class="wrapper grid"></div>
+      </section>
     </main>
+
     <template id="order-summary-template">
-        <h3 class='order-summary-title my-large'>Your Order</h3>
-        <ul id='order-summary-list' class='order-summary-list subgrid-columns border-bottom-large my-medium-bottom'></ul>
-        <p class='order-summary-subtitle'>Total Price:</p> <p id='order-summary-price' class='order-summary-price'>$${0}</p></span>
-        <button id='complete-order' class='btn order-summary-complete-btn'>Complete Order</button>
+      <h3 class="order-summary-title my-large">Your Order</h3>
+      <ul
+        id="order-summary-list"
+        class="order-summary-list subgrid-columns border-bottom-large my-medium-bottom"
+      >
+      </ul>
+      <p class="order-summary-subtitle my-medium-bottom">Total Price:</p>
+      <p id="order-summary-price" class="order-summary-price"></p>
+      <button id="complete-order" class="btn order-summary-complete-btn">
+        Complete Order
+      </button>
+    </template>
+    <template id="modal">
+      <dialog
+        id="payment-form"
+        class="payment-dialog"
+        target="do"
+        aria-describedby=""
+        aria-labelledby=""
+      >
+        <div class="modal-form-wrapper" id="modal form">
+          <h2>Enter Card Details</h2>
+          <form id="payment-form-fields" class="payment-form-fields">
+            <input
+              autofocus
+              class="modal-input"
+              placeholder="John Doe"
+              type="text"
+              id="name"
+              name="name"
+              aria-label="Please enter your name"
+              required
+            />
+            <input
+              class="modal-input"
+              placeholder="1987 3332 8765 3434"
+              maxlength="19"
+              type="tel"
+              inputmode="numeric"
+              pattern="[0-9\s]{13,19}"
+              id="card-number"
+              name="card-number"
+              aria-label="Please enter your credit or debit card number"
+              required
+            />
+            <!-- works now but had to change it to type='text' -->
+            <input
+              inputmode="numeric"
+              class="modal-input"
+              placeholder="555"
+              pattern="[0-9]{3}"
+              type="text"
+              maxlength="3"
+              id="cvv"
+              name="cvv"
+              required
+              aria-label="Please enter your credit or debit card cvv number"
+            />
+            <button id="complete-modal" class="btn" type="submit">
+              Pay
+            </button>
+          </form>
+        </div>
+      </dialog>
+    </template>
+    <!-- i know id don't actually need to use templates for dialogs and popover which are hidden by default -->
+    <!-- just want practise with template really -->
+    <template id="popover-modal-dismiss">
+      <div id="popover-modal-dismiss" class="popover-modal-dismiss" popover>
+        <p>We saved your order for later!</p>
+      </div>
     </template>
   </body>
 </html>

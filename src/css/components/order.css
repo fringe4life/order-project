@@ -19,6 +19,7 @@
 	font-family: Verdana, sans-serif;
 	font-size: 0.75rem;
 	line-height: 1.5rem;
+	color: #bbbbbb;
 }
 
 /* layout */
@@ -34,21 +35,15 @@
 	justify-self: end;
 }
 
-.order-summary-item-name,
-.order-summary-remove-btn {
-	/* display: inline-block; */
-	grid-column: menu-start;
-	grid-row: 1;
-	border: none;
-	background-color: white;
-}
-
 .order-summary-item-name {
+	grid-column: menu-start;
 	justify-self: start;
 }
-
 .order-summary-remove-btn {
-	justify-self: end;
+	grid-column: menu-description;
+	justify-self: start;
+	border: none;
+	background-color: white;
 	&:active,
 	&:hover {
 		cursor: pointer;
@@ -61,7 +56,4 @@
 .order-summary-title,
 .order-summary-item {
 	grid-column: menu;
-}
-
-.order-summary-item {
 }

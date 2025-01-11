@@ -26,7 +26,6 @@ const renderMenuItem =({id,name,ingredients,price,emoji}:MenuItem)=>{
 const renderMenuItems = (items: MenuItem[]) => {
     const app = document.getElementById('app') as HTMLElement
     app.innerHTML = items.map(renderMenuItem).join('');
-    
 }
 
 export {

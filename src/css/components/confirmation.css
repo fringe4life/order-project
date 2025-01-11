@@ -1,0 +1,15 @@
+/* typography */
+
+.order-confirmation-body {
+	color: #065f46;
+}
+
+/* layout */
+
+.order-confirmation-body {
+	grid-column: menu-start / menu-end;
+	text-align: center;
+	background-color: #ecfdf5;
+	width: 100%;
+	margin-top: 40px;
+}

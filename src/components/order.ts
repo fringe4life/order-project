@@ -1,6 +1,6 @@
 import type { LocalStorage } from "../vite-env.d.ts";
 import type { MenuItem } from "./data.ts";
-import { getCurrentOrder, storeCurrentOrder } from "./localStorage.ts"
+import { changeOrder, getCurrentOrder, getTotalPrice } from "./localStorage.ts"
 import menuArray from "./data.ts";
 import { renderMenuItems } from "./menu.ts";
 /**
@@ -8,18 +8,8 @@ import { renderMenuItems } from "./menu.ts";
  * @param id is the ID from the button 
  */
 function addOrderItem(id:number){
-    // typesafely access localStorage
-    const lsObj = getCurrentOrder() satisfies LocalStorage.OrderSummary[]
-    console.log(lsObj)
-            
-    // if item is not in currentOrder, add it with quantity 1
-    // else increment quantity
-    if (!lsObj[id]) {
-        lsObj[id] = { quantity: 1 };
-    } else {
-        lsObj[id].quantity++;
-    }
-    storeCurrentOrder(lsObj)
+    // update localStorage
+    changeOrder(1, id);
     // find the item in menuArray by id, and pass it to renderOrderItem
     const menuItem = menuArray.find(menu=>menu.id===id) as MenuItem
             
@@ -37,11 +27,26 @@ function renderOrderItem({name,id,price}: MenuItem){
         renderOrder()
         orderSummaryList = document.getElementById('order-summary-list') as HTMLElement
     }
+    // could definitely use a refactor!!!! very repetitive code here
     const li = document.createElement('li')
     li.classList.add('order-summary-item', 'subgrid-columns')
-    li.innerHTML = `<p class='order-summary-item-name'>${name}</p> 
-                <button data-remove-id='${id}' class='order-summary-remove-btn'>remove</button>
-                <p class='order-summary-price'>$${price}</p>`
+    const p = document.createElement('p')
+    p.classList.add('order-summary-item-name')
+    p.textContent = name
+    li.appendChild(p)
+    const btn = document.createElement('button')
+    btn.classList.add('order-summary-remove-btn')
+    btn.textContent = 'remove'
+    btn.setAttribute('data-remove-id', id.toString())
+    li.appendChild(btn)
+    const p2 = document.createElement('p')
+    p2.classList.add('order-summary-price')
+    p2.textContent = `$${price}`
+    li.appendChild(p2)
+    // less safe way to do this
+    // li.innerHTML = `<p class='order-summary-item-name'>${name}</p> 
+    //             <button data-remove-id='${id}' class='order-summary-remove-btn'>remove</button>
+    //             <p class='order-summary-price'>$${price}</p>`
     orderSummaryList.appendChild(li)
     updatePriceTotal()
 }
@@ -52,15 +57,17 @@ function renderOrderItem({name,id,price}: MenuItem){
 function removeOrderItem(id:number){
     const orderSummaryList= document.getElementById('order-summary-list') as HTMLElement
     const itemToRemove = orderSummaryList.querySelector(`[data-remove-id='${id}']`)?.parentElement as HTMLLIElement
+    
     orderSummaryList.removeChild(itemToRemove)
-    const currentOrder = getCurrentOrder() satisfies LocalStorage.OrderSummary[]
-    currentOrder[id]--
-    updatePriceTotal()
+    // reduce amount in localStorage
+    changeOrder(-1, id)
+    
     if(!orderSummaryList.children.length){
         // need to hide the order-summary as nothing ordered
         const orderSummary = document.getElementById("order-summary") as HTMLElement
         orderSummary.classList.add('hidden')
     }
+    updatePriceTotal()
 }
 /**
  * @abstract updates the price specifically for price total
@@ -68,21 +75,12 @@ function removeOrderItem(id:number){
  */
 function updatePriceTotal(){
     const priceTotalElement = document.getElementById('order-summary-price') as HTMLElement
-    const lsObj = getCurrentOrder() satisfies LocalStorage.OrderSummary[]
-    let price = 0
-    const lsArray = Array.from(lsObj)
-    for(let id=0;id<lsArray.length;id++){
-        const val = lsArray[id] as LocalStorage.Quantity
-        if(val) {
-            const menuItem = menuArray.find(menu=>menu.id===id) as MenuItem
-            price += menuItem.price * val.quantity
-        } else continue
-    }
-    priceTotalElement.textContent = `$${price}`
+    
+    priceTotalElement.textContent = `$${getTotalPrice()}`
 }
 
 /**
- * This function builds the order summary area when needed
+ * @abstract This function builds the order summary area when needed
  */
 function renderOrder(){
 
@@ -107,14 +105,18 @@ function renderOrderItems(){
     orderSummaryList.innerHTML = ''
     const lsObjects = getCurrentOrder() satisfies LocalStorage.OrderSummary[]
     for(const key of Object.keys(lsObjects)){
-        const {quantity} = lsObjects[key]  satisfies LocalStorage.Quantity
+        const val = lsObjects[key]  satisfies number
         const menuItem = menuArray.find(menu=>menu.id===Number.parseInt(key)) as MenuItem
-        if(quantity > 1){
-            for(let i=0;i<quantity;i++) renderOrderItem(menuItem)
-        } else renderOrderItem(menuItem)
+        if(val){
+            for(let i=0;i<val;i++) renderOrderItem(menuItem)
+        } 
     }
 }
-
+/**
+ * @abstract initialises the menu and if neccesary shows 
+ * users previous order
+ * @description mostly used to reduce imports into main.ts
+ */
 function initialise(){
     // renders the menu items
     renderMenuItems(menuArray)

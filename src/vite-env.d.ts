@@ -2,9 +2,6 @@
 
 export namespace LocalStorage {
     export type OrderSummary = {
-        [id: number]: {
-            quantity: number;
-        };
+        [id: number]: number;
     }
-    export type Quantity = {quantity:number}
 }
