@@ -35,5 +35,5 @@
 	grid-column: menu-start / menu-description-end;
 	grid-row: 1 / -1;
 	/* a bit magic numbery... */
-	margin-top: 30px;
+	margin-top: 40px;
 }

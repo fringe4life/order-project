@@ -1,12 +1,12 @@
 .grid {
 	display: grid;
 	grid-template-columns:
-		[grid-start] 50px
-		[menu-start icon-start] 130px
-		[menu-description-start icon-end] 150px
+		[grid-start] minmax(3%, 50px)
+		[menu-start icon-start] minmax(40px, 130px)
+		[menu-description-start icon-end] minmax(min(100px, 100%), 150px)
 		[menu-description-end] 1fr
-		[button-start] 50px
-		[menu-end button-end] 50px
+		[button-start] minmax(30px, 50px)
+		[menu-end button-end] minmax(3%, 50px)
 		[grid-end];
 	/* otherwise does not takeup full height of parent */
 	height: 100%;

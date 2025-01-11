@@ -63,7 +63,7 @@
 	/* grid layout */
 	grid-column: button;
 	grid-row: 1;
-	align-self: center;
+	justify-self: center;
 
 	/* make a circle */
 	width: 50px;
